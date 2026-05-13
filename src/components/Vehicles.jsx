@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { VEHICLES, CITIES, formatPKR, daysBetween } from '../data';
+import EditorialImage from './EditorialImage';
 
 function VehiclePlaceholder({ name, make, tier, hue = 200 }) {
   const stripe = `hsl(${hue}, 18%, 88%)`;
@@ -38,7 +39,7 @@ function VehicleCard({ v, onOpen }) {
   return (
     <article className="vehicle-card" onClick={() => onOpen(v)}>
       <div className="vehicle-thumb">
-        <VehiclePlaceholder name={v.name} make={v.make} tier={v.tier} hue={v.hue} />
+        <EditorialImage src={v.img} alt={v.name} label={v.name} sublabel={v.tier} hue={v.hue} />
         <span className={`badge${v.tier === 'Luxury' ? ' luxury' : ''}`}>{v.tier}</span>
       </div>
       <div className="vehicle-body">
@@ -111,7 +112,7 @@ export function BookingDrawer({ vehicle, open, onClose, onConfirm }) {
 
         <div className="drawer-body">
           <div className="drawer-hero">
-            <VehiclePlaceholder name={vehicle.name} make={vehicle.make} tier={vehicle.tier} hue={vehicle.hue} />
+            <EditorialImage src={vehicle.img} alt={vehicle.name} label={vehicle.name} sublabel={vehicle.tier} hue={vehicle.hue} />
           </div>
 
           <div className="drawer-title">
